@@ -29,27 +29,55 @@ function operate(currentNumber, newNumber, operator) {
     }
 }
 
+function clear() {
+    displayValue = "0";
+    screen.textContent = displayValue;
+}
+
+function convertSigns(displayValue) {
+    screen.textContent = displayValue
+}
+
+function convertToPercentage(displayValue) {
+    displayValue = displayValue/100;
+    screen.textContent = displayValue;
+}
+
 let initialValue = 0;
 let operator = "";
 let secondaryValue = 0;
-let displayValue = "";
+let displayValue = "0";
 
 let screen = document.querySelector("#calculation");
 let inputs = document.querySelectorAll(".input");
+
+
+
 inputs.forEach((input) => {
     input.addEventListener('click', function(e) {
-        if (e.target.textContent === "0" && displayValue === ""
+        if (e.target.textContent === "0" && displayValue === "0"
          || displayValue.length > 6
          || e.target.textContent === "." && displayValue.includes(".")) {
             return;
         }
-        else if (displayValue === "" && e.target.textContent === ".") {
-            displayValue += 0 + e.target.textContent;
+        else if (displayValue === "0" && e.target.className.includes("number")) {
+            displayValue = "";
+            displayValue += e.target.textContent;
             screen.textContent = displayValue;
         }
         else {
             displayValue += e.target.textContent;
             screen.textContent = displayValue;
         }
+    })
+})
+
+let miscs = document.querySelectorAll(".misc");
+
+miscs.forEach((misc) => {
+    misc.addEventListener('click', function(e) {
+        if (e.target.textContent === "AC") clear();
+        else if (e.target.textContent === "+/-") convertSigns(displayValue);
+        else if (e.target.textContent === "%") convertToPercentage(displayValue);
     })
 })
