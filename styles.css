@@ -1,0 +1,108 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 100px;
+    background: rgb(17, 17, 17);
+}
+
+#iphone-container {
+    max-width: 295px;
+    max-height: 466px;
+}
+
+#calculation-container {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    padding-right: 15px;
+    font-size: 70px;
+    color: white;
+    flex-basis: auto;
+}
+
+
+
+#input-container {
+    display: flex;
+}
+
+#columnOne {
+    display: flex;
+    flex-direction: column;
+}
+
+#rowOne,
+#rowTwo,
+#rowThree,
+#rowFour,
+#rowFive {
+    display: flex;
+}
+
+#columnOne,
+#columnTwo,
+#columnThree,
+#input-container,
+#rowOne,
+#rowTwo,
+#rowThree,
+#rowFour {
+    gap: 5px;
+}
+
+button {
+    display: flex;
+    width: 70px;
+    height: 70px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 70px;
+    border: none;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+.misc {
+    background-color: #d4d4d2;
+    color: black;
+}
+
+.input {
+    background-color: #505050;
+    color: white;
+}
+
+.operators {
+    background-color: #FF9500;
+    color: white;
+}
+
+#buttonZero {
+    justify-content: start;
+    padding-left: 30px;
+}
+
+#columnTwo {
+    display: flex;
+    flex-direction: column;
+}
+
+#columnThree {
+    display: flex;
+    flex-direction: column;
+}
+
+#footer {
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+}
