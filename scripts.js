@@ -34,13 +34,20 @@ function clear() {
     screen.textContent = displayValue;
 }
 
-function convertSigns(displayValue) {
-    screen.textContent = displayValue
+function convertSigns(displayNum) {
+    displayValue = (displayNum *-1).toString();
+    screen.textContent = displayValue;
 }
 
-function convertToPercentage(displayValue) {
-    displayValue = displayValue/100;
-    screen.textContent = displayValue;
+function convertToPercentage(displayNum) {
+    displayValue = (displayNum/100).toString();
+    if (displayValue.length > 7) {
+        displayValue = Number(displayValue).toExponential(1).toString();
+        screen.textContent = displayValue;
+    }
+    else {
+        screen.textContent = displayValue;
+    }
 }
 
 let initialValue = 0;
@@ -69,7 +76,7 @@ inputs.forEach((input) => {
             displayValue += e.target.textContent;
             screen.textContent = displayValue;
         }
-    })
+    });
 })
 
 let miscs = document.querySelectorAll(".misc");
