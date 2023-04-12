@@ -1,17 +1,23 @@
 function add(currentNumber, newNumber) {
-    return console.log(currentNumber+newNumber);
+    displayValue = currentNumber + newNumber;
+    screen.textContent = displayValue.toString();
+    // initial = DisplayValue
+    // displayValue = 0
 }
 
 function subtract(currentNumber, newNumber) {
-    return currentNumber-newNumber;
+    displayValue = currentNumber - newNumber;
+    screen.textContent = displayValue.toString();
 }
 
 function multiply(currentNumber, newNumber) {
-    return currentNumber*newNumber;
+    displayValue = currentNumber * newNumber;
+    screen.textContent = displayValue.toString();
 }
 
 function divide(currentNumber, newNumber) {
-    return console.log(currentNumber/newNumber);
+    displayValue = currentNumber / newNumber;
+    screen.textContent = displayValue.toString();
 }
 
 function operate(currentNumber, newNumber, operator) {
@@ -31,6 +37,9 @@ function operate(currentNumber, newNumber, operator) {
 
 function clear() {
     displayValue = "0";
+    initialValue = 0;
+    secondaryValue = 0;
+    switchVariables = false;
     screen.textContent = displayValue;
 }
 
@@ -54,10 +63,12 @@ let initialValue = 0;
 let operator = "";
 let secondaryValue = 0;
 let displayValue = "0";
+let temp = 0;
 
 let screen = document.querySelector("#calculation");
 let inputs = document.querySelectorAll(".input");
 
+let switchVariables = false;
 
 
 inputs.forEach((input) => {
@@ -73,6 +84,7 @@ inputs.forEach((input) => {
             screen.textContent = displayValue;
         }
         else {
+            
             displayValue += e.target.textContent;
             screen.textContent = displayValue;
         }
@@ -86,5 +98,110 @@ miscs.forEach((misc) => {
         if (e.target.textContent === "AC") clear();
         else if (e.target.textContent === "+/-") convertSigns(displayValue);
         else if (e.target.textContent === "%") convertToPercentage(displayValue);
+    })
+})
+
+let operators = document.querySelectorAll(".operators");
+
+operators.forEach((operator) => {
+    operator.addEventListener('click', function(e) {
+        if (e.target.textContent === "+") {
+            if (switchVariables === false) {
+                initialValue = Number(displayValue);
+                op = "+";
+                displayValue = "0";
+                switchVariables = true;
+                console.log("IV: " + initialValue);
+                console.log("SV: " + secondaryValue);
+                console.log("DV: " + displayValue); 
+            }
+            else if (switchVariables === true) {
+                secondaryValue = Number(displayValue);
+                operate(initialValue, secondaryValue, op);
+                op = "+";
+                initialValue = displayValue;
+                displayValue = "0";
+                console.log("IV: " + initialValue);
+                console.log("SV: " + secondaryValue);
+                console.log("DV: " + displayValue); 
+
+            }
+        }
+
+
+        else if (e.target.textContent === "-") {
+            if (switchVariables === false) {
+                initialValue = Number(displayValue);
+                op = "-";
+                displayValue = "0";
+                switchVariables = true;
+            }
+            else if (switchVariables === true) {
+                secondaryValue = Number(displayValue);
+                operate(initialValue, secondaryValue, op);
+                op = "-";
+                initialValue = displayValue;
+                displayValue = "0";
+                console.log("IV: " + initialValue);
+                console.log("SV: " + secondaryValue);
+                console.log("DV: " + displayValue); 
+
+            }
+        }
+
+
+        else if (e.target.textContent === "÷") {
+            if (switchVariables === false) {
+                initialValue = Number(displayValue);
+                op = "÷";
+                displayValue = "0";
+                switchVariables = true;
+            }
+            else if (switchVariables === true) {
+                secondaryValue = Number(displayValue);
+                if (secondaryValue === 0) secondaryValue = 1;
+                operate(initialValue, secondaryValue, op);
+                op = "÷";
+                initialValue = displayValue;
+                displayValue = "0";
+                console.log("IV: " + initialValue);
+                console.log("SV: " + secondaryValue);
+                console.log("DV: " + displayValue); 
+
+            }
+        }
+
+
+        else if (e.target.textContent === "x") {
+            if (switchVariables === false) {
+                initialValue = Number(displayValue);
+                op = "x";
+                displayValue = "0";
+                switchVariables = true;
+            }
+            else if (switchVariables === true) {
+                secondaryValue = Number(displayValue);
+                if (secondaryValue === 0) secondaryValue = 1;
+                operate(initialValue, secondaryValue, op);
+                op = "x";
+                initialValue = displayValue;
+                displayValue = "0";
+                console.log("IV: " + initialValue);
+                console.log("SV: " + secondaryValue);
+                console.log("DV: " + displayValue); 
+
+            }
+        }
+
+
+        else if (e.target.textContent === "=") {
+            secondaryValue = Number(displayValue);
+            operate(initialValue, secondaryValue, op);
+            initialValue = displayValue;
+            displayValue = "0";
+            console.log("IV: " + initialValue);
+            console.log("SV: " + secondaryValue);
+            console.log("DV: " + displayValue);
+        }
     })
 })
