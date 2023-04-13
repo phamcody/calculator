@@ -1,8 +1,6 @@
 function add(currentNumber, newNumber) {
     displayValue = currentNumber + newNumber;
     screen.textContent = displayValue.toString();
-    // initial = DisplayValue
-    // displayValue = 0
 }
 
 function subtract(currentNumber, newNumber) {
@@ -159,7 +157,6 @@ operators.forEach((operator) => {
             }
             else if (switchVariables === true) {
                 secondaryValue = Number(displayValue);
-                if (secondaryValue === 0) secondaryValue = 1;
                 operate(initialValue, secondaryValue, op);
                 op = "÷";
                 initialValue = displayValue;
@@ -181,7 +178,6 @@ operators.forEach((operator) => {
             }
             else if (switchVariables === true) {
                 secondaryValue = Number(displayValue);
-                if (secondaryValue === 0) secondaryValue = 1;
                 operate(initialValue, secondaryValue, op);
                 op = "x";
                 initialValue = displayValue;
@@ -198,7 +194,7 @@ operators.forEach((operator) => {
             secondaryValue = Number(displayValue);
             operate(initialValue, secondaryValue, op);
             initialValue = displayValue;
-            displayValue = "0";
+            op = "";
             console.log("IV: " + initialValue);
             console.log("SV: " + secondaryValue);
             console.log("DV: " + displayValue);
