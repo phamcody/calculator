@@ -91,7 +91,7 @@ inputs.forEach((input) => {
     input.addEventListener('click', function(e) {
         if (e.target.textContent === "0" && displayValue === "0"
          || displayValue.length > 6
-         || e.target.textContent === "." && displayValue.includes(".")) {
+         || e.target.textContent === "." && displayValue.toString().includes(".")) {
             return;
         }
         else if (displayValue === "0" && e.target.className.includes("number")) {
