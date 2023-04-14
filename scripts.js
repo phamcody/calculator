@@ -38,7 +38,8 @@ function divide(currentNumber, newNumber) {
         displayValue = Number(displayValue).toFixed(2);
     }
     displayValue = Number(displayValue);
-    if (displayValue === Infinity) {
+    if (displayValue === Infinity ||
+        currentNumber === 0 && newNumber === 0) {
         isDividedByZero = true;
         screen.textContent = "Error";
     }
@@ -105,6 +106,7 @@ let switchVariables = false;
 
 inputs.forEach((input) => {
     input.addEventListener('click', function(e) {
+        input.classList.add("selected");
         if (e.target.textContent === "0" && displayValue === "0"
          || displayValue.length > 6
          || e.target.textContent === "." && displayValue.toString().includes(".")) {
@@ -127,6 +129,7 @@ let miscs = document.querySelectorAll(".misc");
 
 miscs.forEach((misc) => {
     misc.addEventListener('click', function(e) {
+        misc.classList.add("selectedTwo");
         if (e.target.textContent === "AC") clear();
         else if (e.target.textContent === "+/-") convertSigns(displayValue);
         else if (e.target.textContent === "%") convertToPercentage(displayValue);
@@ -137,6 +140,7 @@ let operators = document.querySelectorAll(".operators");
 
 operators.forEach((operator) => {
     operator.addEventListener('click', function(e) {
+        operator.classList.add("operationSelected");
         if (e.target.textContent === "+") {
             if (switchVariables === false) {
                 initialValue = Number(displayValue);
@@ -183,9 +187,6 @@ operators.forEach((operator) => {
                 op = "÷";
                 displayValue = "0";
                 switchVariables = true;
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
             }
             else if (switchVariables === true) {
                 secondaryValue = Number(displayValue);
@@ -193,10 +194,6 @@ operators.forEach((operator) => {
                 op = "÷";
                 initialValue = displayValue;
                 displayValue = "0";
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
-
             }
         }
 
@@ -214,10 +211,6 @@ operators.forEach((operator) => {
                 op = "x";
                 initialValue = displayValue;
                 displayValue = "0";
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
-
             }
         }
 
@@ -233,3 +226,12 @@ operators.forEach((operator) => {
         }
     })
 })
+
+function removeAnimation(e) {
+    this.classList.remove("selected");
+    this.classList.remove("selectedTwo");
+    this.classList.remove("operationSelected");
+}
+
+const animation = document.querySelectorAll(".animationOne");
+animation.forEach(button => button.addEventListener('transitionend', removeAnimation));

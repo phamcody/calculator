@@ -106,3 +106,20 @@ button {
     font-family: 'Josefin Sans', sans-serif;
     color: white;
 }
+
+.animationOne {
+    transition: all .25s;
+}
+
+.selected {
+    background-color: #b3b3b3;
+}
+
+.selectedTwo {
+    background-color: #ffffff;
+}
+
+.operationSelected {
+    background-color: white;
+    color: #FF9500;
+}
