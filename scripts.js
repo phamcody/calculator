@@ -15,15 +15,23 @@ function subtract(currentNumber, newNumber) {
 }
 
 function multiply(currentNumber, newNumber) {
+    displayValue = (currentNumber * newNumber).toString();
+    if (displayValue.length > 6) {
+        displayValue = Number(displayValue).toFixed(2);
+    }
+    displayValue = Number(displayValue);
     if (isDividedByZero) screen.textContent = "Error";
     else {
-        displayValue = currentNumber * newNumber;
         screen.textContent = displayValue.toString();
     }
 }
 
 function divide(currentNumber, newNumber) {
-    displayValue = currentNumber / newNumber;
+    displayValue = (currentNumber / newNumber).toString();
+    if (displayValue.length > 6) {
+        displayValue = Number(displayValue).toFixed(2);
+    }
+    displayValue = Number(displayValue);
     if (displayValue === Infinity) {
         isDividedByZero = true;
         screen.textContent = "Error";
