@@ -1,21 +1,36 @@
 function add(currentNumber, newNumber) {
-    displayValue = currentNumber + newNumber;
-    screen.textContent = displayValue.toString();
+    if (isDividedByZero) screen.textContent = "Error";
+    else {
+        displayValue = currentNumber + newNumber;
+        screen.textContent = displayValue.toString();
+    }
 }
 
 function subtract(currentNumber, newNumber) {
-    displayValue = currentNumber - newNumber;
-    screen.textContent = displayValue.toString();
+    if (isDividedByZero) screen.textContent = "Error";
+    else {
+        displayValue = currentNumber - newNumber;
+        screen.textContent = displayValue.toString();
+    }
 }
 
 function multiply(currentNumber, newNumber) {
-    displayValue = currentNumber * newNumber;
-    screen.textContent = displayValue.toString();
+    if (isDividedByZero) screen.textContent = "Error";
+    else {
+        displayValue = currentNumber * newNumber;
+        screen.textContent = displayValue.toString();
+    }
 }
 
 function divide(currentNumber, newNumber) {
     displayValue = currentNumber / newNumber;
-    screen.textContent = displayValue.toString();
+    if (displayValue === Infinity) {
+        isDividedByZero = true;
+        screen.textContent = "Error";
+    }
+    else {
+        screen.textContent = displayValue.toString();
+    }
 }
 
 function operate(currentNumber, newNumber, operator) {
@@ -39,6 +54,7 @@ function clear() {
     secondaryValue = 0;
     switchVariables = false;
     screen.textContent = displayValue;
+    isDividedByZero = false;
 }
 
 function convertSigns(displayNum) {
@@ -62,6 +78,8 @@ let operator = "";
 let secondaryValue = 0;
 let displayValue = "0";
 let temp = 0;
+let isDividedByZero = false;
+
 
 let screen = document.querySelector("#calculation");
 let inputs = document.querySelectorAll(".input");
@@ -109,9 +127,6 @@ operators.forEach((operator) => {
                 op = "+";
                 displayValue = "0";
                 switchVariables = true;
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
             }
             else if (switchVariables === true) {
                 secondaryValue = Number(displayValue);
@@ -119,9 +134,6 @@ operators.forEach((operator) => {
                 op = "+";
                 initialValue = displayValue;
                 displayValue = "0";
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
 
             }
         }
@@ -140,9 +152,7 @@ operators.forEach((operator) => {
                 op = "-";
                 initialValue = displayValue;
                 displayValue = "0";
-                console.log("IV: " + initialValue);
-                console.log("SV: " + secondaryValue);
-                console.log("DV: " + displayValue); 
+
 
             }
         }
@@ -195,9 +205,6 @@ operators.forEach((operator) => {
             operate(initialValue, secondaryValue, op);
             initialValue = displayValue;
             op = "";
-            console.log("IV: " + initialValue);
-            console.log("SV: " + secondaryValue);
-            console.log("DV: " + displayValue);
         }
     })
 })
